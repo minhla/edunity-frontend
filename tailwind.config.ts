@@ -49,13 +49,31 @@ const config: Config = {
   				'3': 'hsl(var(--chart-3))',
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
-  			}
+  			},
+  			'edunity-primary': 'var(--edunity-primary)',
+  			'edunity-secondary': 'var(--edunity-secondary)',
+  			'edunity-danger': 'var(--edunity-danger)',
+  			'edunity-success': 'var(--edunity-success)',
+  			'edunity-grey': 'var(--edunity-grey)',
+  			'edunity-black': 'var(--edunity-black)'
   		},
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
-  		}
+  		},
+  		fontFamily: {
+  			heading: "var(--font-epliogue)",
+  			body: "var(--font-sora)",
+  		},
+			backgroundImage: {
+				hero: "url('/hero-bg.png')",
+				testimonial: "url('/testimonial-bg.png')",
+				courses: "url('/courses-bg.png')",
+			},
+			content: {
+				quote: "url('/quote.svg')",
+			}
   	}
   },
   plugins: [require("tailwindcss-animate")],
