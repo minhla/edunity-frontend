@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -33,6 +29,15 @@ body {
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
+
+    --edunity-primary: #704fe6;
+    --edunity-secondary: #17254e;
+    --edunity-danger: #e8324d;
+    --edunity-success: #2bb87e;
+    --edunity-grey: #f5f5f5;
+    --edunity-black: #222222;
+
+    --max-content-width: 1320px;
   }
   .dark {
     --background: 240 10% 3.9%;
@@ -60,13 +65,25 @@ body {
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
-}
-
-@layer base {
   * {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-body flex flex-col;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading;
+  }
+}
+
+@layer utilities {
+  .content-wrapper {
+    @apply max-w-[var(--max-content-width)] mx-auto px-4;
   }
 }
