@@ -63,13 +63,14 @@ const config: Config = {
   			sm: 'calc(var(--radius) - 4px)'
   		},
   		fontFamily: {
-  			heading: "var(--font-epliogue)",
+  			heading: "var(--font-epilogue)",
   			body: "var(--font-sora)",
   		},
 			backgroundImage: {
 				hero: "url('/hero-bg.png')",
 				testimonial: "url('/testimonial-bg.png')",
 				courses: "url('/courses-bg.png')",
+				coursesPageHeader: "url('/courses-header.png')",
 			},
 			content: {
 				quote: "url('/quote.svg')",
