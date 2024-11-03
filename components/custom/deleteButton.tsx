@@ -1,31 +1,62 @@
 "use client";
-import { Button } from "../ui/button";
+
 import { Trash } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
-
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { Button } from "../ui/button";
 
 const DeleteButton = ({ courseId }: { courseId: string }) => {
   const router = useRouter();
+  const pathname = usePathname();
 
   const handleDeleteCourse = async (courseId: string) => {
-    console.log("🚀 ~ handleDeleteCourse ~ courseId:", courseId);
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_ROOT_URL}/delete/${courseId}`, {
+    await fetch(`/courses/delete/${courseId}?path=${pathname}`, {
       method: "DELETE",
     });
-    const responseJSON = await res.json();
-    console.log("🚀 ~ handleDeleteCourse ~ responseJSON:", responseJSON);
     router.refresh();
   };
 
   return (
-    <Button
-      className="bg-edunity-danger absolute bottom-6 right-6"
-      size="icon"
-      onClick={() => handleDeleteCourse(courseId)}
-    >
-      <Trash />
-    </Button>
+    <AlertDialog>
+      <AlertDialogTrigger>
+        <Button
+          className="bg-edunity-danger absolute bottom-6 right-6"
+          size="icon"
+        >
+          <Trash />
+        </Button>
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+          <AlertDialogDescription>
+            Deleted courses cannot be recovered.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogAction
+            className="rounded-full px-4 py-2 bg-edunity-primary text-white"
+            onClick={() => handleDeleteCourse(courseId)}
+          >
+            Confirm
+          </AlertDialogAction>
+          <AlertDialogCancel className="rounded-full px-4 py-2 border-edunity-primary">
+            Cancel
+          </AlertDialogCancel>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
   );
 };
 

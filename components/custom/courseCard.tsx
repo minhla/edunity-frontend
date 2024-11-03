@@ -49,6 +49,7 @@ const CourseCard = ({ course }: CourseCardProps) => {
           src={cover_image}
           alt={title}
           fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="object-cover rounded-md"
         />
         <div className="flex gap-3 absolute bottom-4">
@@ -64,17 +65,12 @@ const CourseCard = ({ course }: CourseCardProps) => {
       <h4 className="font-body font-semibold text-xl leading-7 text-edunity-secondary">
         {title}
       </h4>
-      <div className="mt-auto font-body font-semibold text-edunity-primary text-2xl">
-        {formatPrice(price)}
+      <div className="flex flex-col flex-1">
+        <div className="mt-auto font-body font-semibold text-edunity-primary text-2xl">
+          {formatPrice(price)}
+        </div>
+        <DeleteButton courseId={_id} />
       </div>
-      {/* <Button
-        className="bg-edunity-danger absolute bottom-6 right-6"
-        size="icon"
-        onClick={() => handleDeleteCourse(_id)}
-      >
-        <Trash />
-      </Button> */}
-      <DeleteButton courseId={_id} />
     </div>
   );
 };
