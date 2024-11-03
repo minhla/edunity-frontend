@@ -68,19 +68,17 @@ const CategoryCard = ({
   categoryName,
   style,
 }: Category & { style: CategoryCardStyle }) => {
-  const {
-    bgColor,
-    iconColor,
-    iconBgColor,
-    iconComponent: Icon,
-  } = style;
+  const { bgColor, iconColor, iconBgColor, iconComponent: Icon } = style;
   return (
     <div
-      className="flex gap-6 items-center p-4 rounded-xl min-w-80"
+      className="flex gap-3 md:gap-6 items-center p-4 rounded-xl"
       style={{ backgroundColor: bgColor }}
     >
-      <div className="rounded-full border border-dashed" style={{borderColor: iconColor, backgroundColor: iconBgColor}}>
-        <Icon size={80} className="p-4" style={{color: iconColor}}/>
+      <div
+        className="rounded-full border border-dashed"
+        style={{ borderColor: iconColor, backgroundColor: iconBgColor }}
+      >
+        <Icon className=" size-10 p-2 md:p-4 md:size-20" style={{ color: iconColor }} />
       </div>
       <h3 className="font-bold text-xl text-edunity-secondary">
         {categoryName}
@@ -93,24 +91,26 @@ const SectionCategories = async () => {
   const topCategories = await fetchCategories();
 
   return (
-    <div className="content-wrapper flex flex-col gap-16 items-center justify-center py-20">
-    <h1 className="uppercase font-heading font-bold text-4xl text-edunity-secondary">
-      Most popular topics
-    </h1>
-    <div className="grid grid-cols-3 gap-10">
-      {topCategories.map((category: Category, index) => {
-        const style = categoryCardStyles[index % categoryCardStyles.length];
-        return (
-          <CategoryCard
-            key={category.categoryName}
-            {...category}
-            style={style}
-          />
-        );
-      })}
+    <div className="w-full">
+      <div className="content-wrapper flex flex-col gap-16 items-center justify-center py-20">
+        <h1 className="uppercase font-heading font-bold text-4xl text-edunity-secondary">
+          Most popular topics
+        </h1>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-10 w-full">
+          {topCategories.map((category: Category, index) => {
+            const style = categoryCardStyles[index % categoryCardStyles.length];
+            return (
+              <CategoryCard
+                key={category.categoryName}
+                {...category}
+                style={style}
+              />
+            );
+          })}
+        </div>
+      </div>
     </div>
-  </div>
-  )
-}
+  );
+};
 
 export default SectionCategories;

@@ -54,29 +54,29 @@ const TESTIMONIALS = [
 const SectionTestimonials = () => {
   return (
     <div className="bg-testimonial min-h-[700px] py-20">
-      <div className="content-wrapper flex flex-col items-center  gap-10">
+      <div className="content-wrapper flex flex-col items-center gap-10">
         <div className="uppercase font-body bg-[#E9E2FF] rounded-md text-edunity-primary w-fit px-4 py-1">
           Testimonial
         </div>
-        <h1 className="text-edunity-secondary font-bold text-5xl w-1/2 text-center leading-[58px]">
+        <h1 className="text-edunity-secondary font-bold text-3xl lg:text-5xl lg:w-1/2 text-center lg:leading-[58px]">
           Creating A Community Of Life Long Learners.
         </h1>
         <div>
           <Carousel>
-            <CarouselContent className="-ml-20 pt-12">
+            <CarouselContent className="md:-ml-20 pt-12 pl-5">
               {TESTIMONIALS.map((testimonial, index) => {
                 const { name, title, company, content } = testimonial;
                 return (
                   <CarouselItem
-                    className="md:basis-1/3 pl-20 relative"
+                    className="md:basis-1/3 md:pl-20 relative"
                     key={`testimonial-${index}`}
                   >
-                    <div className="rounded-2xl border border-edunity-secondary p-6 flex flex-col gap-4 before:content-quote before:absolute before:top-[-30px] before:left-[60px]">
-                      <p className="text-lg leading-9">{content}</p>
-                      <h3 className="text-edunity-secondary font-bold text-xl">
+                    <div className="break-all rounded-2xl border border-edunity-secondary p-3 md:p-6 flex flex-col gap-4 before:content-quote before:absolute before:-top-[30px] before:left-3 md:before:left-[60px]">
+                      <p className=" text-md md:text-lg leading-9">{content}</p>
+                      <h3 className="text-edunity-secondary font-bold text-lg md:text-xl">
                         {name}
                       </h3>
-                      <h4 className="text-edunity-primary text-lg">{`${title} at ${company}`}</h4>
+                      <h4 className="text-edunity-primary text-md md:text-lg">{`${title} at ${company}`}</h4>
                     </div>
                   </CarouselItem>
                 );
