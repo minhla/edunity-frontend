@@ -4,10 +4,17 @@ import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Search } from "lucide-react";
+import { Search, Menu } from "lucide-react";
+
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { Input } from "../ui/input";
 
 import logo from "../../public/logo-A.svg";
-import { Input } from "../ui/input";
 
 const links = [
   { href: "/", label: "Home" },
@@ -16,39 +23,78 @@ const links = [
 
 const Topbar = () => {
   const pathname = usePathname();
+
   const isActive = (href: string): boolean => pathname === href;
   const isActiveClass =
     "text-edunity-primary border border-edunity-primary text-edunity-primary";
+
   return (
-    <div className="content-wrapper shadow-sm">
-      <div className="py-4 grid grid-cols-3">
-        <Link href="/">
-          <Image src={logo} alt="Edunity" height={54} />
-        </Link>
-        <nav className="flex gap-4 items-center">
-          {links.map(({ href, label }) => {
-            const isActiveLink = isActive(href);
-            return (
-              <Link
-                key={`${href}${label}`}
-                href={href}
-                className={`rounded-full px-6 py-1 ${
-                  isActiveLink && isActiveClass
-                }`}
-              >
-                {label}
-              </Link>
-            );
-          })}
-        </nav>
-        <div className="relative">
-          <Input
-            placeholder="Search courses"
-            className="w-[360px] h-[52px] rounded-full px-8 border-edunity-black"
-          />
-          <div className="absolute right-6 top-12 -translate-y-8 hover:cursor-pointer">
-            <Search className="stroke-edunity-black size-5" />
+    <div className="w-full">
+      <div className="content-wrapper">
+        <div className="py-4 flex justify-between items-center">
+          <Link href="/">
+            <Image src={logo} alt="Edunity" height={55}/>
+          </Link>
+          <nav className="hidden md:flex gap-4 items-center justify-center">
+            {links.map(({ href, label }) => {
+              const isActiveLink = isActive(href);
+              return (
+                <Link
+                  key={`${href}${label}`}
+                  href={href}
+                  className={`rounded-full px-6 py-1 ${
+                    isActiveLink && isActiveClass
+                  }`}
+                >
+                  {label}
+                </Link>
+              );
+            })}
+          </nav>
+          <div className="relative hidden md:block">
+            <Input
+              placeholder="Search courses"
+              className="max-w-[360px] h-[50px] rounded-full px-8 border-edunity-black"
+            />
+            <div className="absolute right-6 top-12 -translate-y-8 hover:cursor-pointer">
+              <Search className="stroke-edunity-black size-5" />
+            </div>
           </div>
+
+          <Sheet>
+            <SheetTrigger className=" md:hidden">
+              <Menu />
+            </SheetTrigger>
+            <SheetContent>
+              <SheetHeader className="flex flex-col gap-5 pt-8">
+                <div className="relative">
+                  <Input
+                    placeholder="Search courses"
+                    className="rounded-full px-6 border-edunity-black"
+                  />
+                  <div className="absolute right-6 top-12 -translate-y-10 hover:cursor-pointer">
+                    <Search className="stroke-edunity-black size-5" />
+                  </div>
+                </div>
+                <div className="flex flex-col">
+                  {links.map(({ href, label }) => {
+                    const isActiveLink = isActive(href);
+                    return (
+                      <Link
+                        key={`${href}${label}`}
+                        href={href}
+                        className={`rounded-full px-6 py-1 ${
+                          isActiveLink && isActiveClass
+                        }`}
+                      >
+                        {label}
+                      </Link>
+                    );
+                  })}
+                </div>
+              </SheetHeader>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
     </div>
