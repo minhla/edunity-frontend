@@ -52,7 +52,7 @@ const CourseCard = ({ course }: CourseCardProps) => {
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="object-cover rounded-md"
         />
-        <div className="flex gap-3 absolute bottom-4">
+        <div className="flex gap-3 absolute bottom-4 flex-wrap">
           {categories.map((category) => {
             return <CategoryCard key={category} category={category} />;
           })}
