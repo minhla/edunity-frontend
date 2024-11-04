@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { GraduationCap } from "lucide-react";
+import Link from "next/link";
 
 const SectionHero = () => {
   return (
@@ -17,11 +18,17 @@ const SectionHero = () => {
             We are experienced in education platform and skilled strategies for
             the success of our online learning.
           </p>
-          <Button className="text-lg py-7 bg-edunity-secondary hover:bg-edunity-secondary text-white rounded-full relative overflow-hidden group transition-all duration-300 ease-in-out w-[200px] hover:w-[230px]">
-            <span className="relative group-hover:mr-2 transition-all duration-300 ease-in-out">
-              Find Courses
-            </span>
-            <GraduationCap className="absolute right-6 w-10 h-10 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out transform translate-x-full group-hover:translate-x-0" />
+          <Button
+            asChild
+            className="text-md py-7 bg-edunity-secondary hover:bg-edunity-secondary text-white rounded-full relative overflow-hidden group transition-all duration-300 ease-in-out w-[200px] hover:w-[230px]"
+          >
+            <Link href="/courses">
+              <span className="relative group-hover:mr-2 transition-all duration-300 ease-in-out">
+                Find Courses
+              </span>
+
+              <GraduationCap className="absolute right-6 w-10 h-10 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out transform translate-x-full group-hover:translate-x-0" />
+            </Link>
           </Button>
         </div>
       </div>
