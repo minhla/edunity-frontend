@@ -78,7 +78,7 @@ const Topbar = () => {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
               />
-              <div className="absolute right-6 top-12 -translate-y-8 hover:cursor-pointer">
+              <div className="absolute right-6 top-12 -translate-y-8 hover:cursor-pointer" onClick={handleSearch}>
                 <Search className="stroke-edunity-black size-5 cursor-pointer" />
               </div>
             </form>
@@ -97,7 +97,7 @@ const Topbar = () => {
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                   />
-                  <div className="absolute right-6 top-12 -translate-y-10 hover:cursor-pointer">
+                  <div className="absolute right-6 top-12 -translate-y-10 hover:cursor-pointer" onClick={handleSearch}>
                     <Search className="stroke-edunity-black size-5" />
                   </div>
                 </div>
