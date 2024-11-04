@@ -84,6 +84,6 @@
 
 @layer utilities {
   .content-wrapper {
-    @apply max-w-[var(--max-content-width)] mx-auto px-4 md:px-0;
+    @apply max-w-[var(--max-content-width)] mx-auto px-4 xl:px-0;
   }
 }
