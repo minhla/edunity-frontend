@@ -6,14 +6,14 @@ const SectionHero = () => {
   return (
     <div className="bg-hero flex flex-col lg:flex-row min-h-[720px]">
       <div className="flex items-center">
-        <div className="flex flex-col gap-5 p-5 xl:pl-[calc((100vw-var(--max-content-width))/2)] xl:pr-[calc((100vw-var(--max-content-width))/3)]">
-          <h2 className="uppercase text-edunity-primary">
+        <div className="flex flex-col gap-5 p-5 xl:pl-[calc((100vw-var(--max-content-width))/2)] xl:pr-[20%]">
+          <h2 className="uppercase text-edunity-primary font-body">
             Welcome to Edunity online courses
           </h2>
-          <h1 className="text-edunity-secondary capitalize font-bold text-5xl">
+          <h1 className="text-edunity-secondary capitalize font-bold text-5xl leading-[60px]">
             Achieving Your Dreams Through Education
           </h1>
-          <p className="mt-4 w-[60%]">
+          <p className="mt-4 w-[70%]">
             We are experienced in education platform and skilled strategies for
             the success of our online learning.
           </p>
