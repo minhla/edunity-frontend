@@ -19,8 +19,8 @@ import { Input } from "@/components/ui/input";
 const formSchema = z
   .object({
     title: z.string(),
-    price: z.coerce.number().min(1),
-    rating: z.coerce.number().min(0).max(5),
+    price: z.coerce.number().min(1).multipleOf(0.01).optional(),
+    rating: z.coerce.number().min(0).max(5).optional(),
     coverImage: z.string().url(),
     categories: z.string(),
   })
@@ -52,15 +52,15 @@ const CreateCourseForm = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 flex flex-col items-center">
         <FormField
           control={form.control}
           name="title"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="w-full">
               <FormLabel>Title</FormLabel>
               <FormControl>
-                <Input placeholder="React Course For Beginners" {...field} />
+                <Input className="input-form" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -70,16 +70,16 @@ const CreateCourseForm = () => {
           control={form.control}
           name="categories"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="w-full">
               <FormLabel>Categories</FormLabel>
               <FormControl>
-                <Input placeholder="React" {...field} />
+                <Input className="input-form" placeholder="React" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <div className="flex gap-5">
+        <div className="flex flex-col md:flex-row gap-5 w-full">
           <FormField
             control={form.control}
             name="price"
@@ -87,7 +87,7 @@ const CreateCourseForm = () => {
               <FormItem className="flex-1">
                 <FormLabel>Price</FormLabel>
                 <FormControl>
-                  <Input placeholder="100" {...field} />
+                  <Input className="input-form" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -100,7 +100,7 @@ const CreateCourseForm = () => {
               <FormItem className="flex-1">
                 <FormLabel>Rating</FormLabel>
                 <FormControl>
-                  <Input placeholder="4" {...field} />
+                  <Input className="input-form" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -112,17 +112,17 @@ const CreateCourseForm = () => {
           control={form.control}
           name="coverImage"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="w-full">
               <FormLabel>Cover Image</FormLabel>
               <FormControl>
-                <Input placeholder="https://valid-url.com" {...field} />
+                <Input className="input-form" placeholder="Enter a valid url to an image" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit" disabled={isLoading}>
-          {!isLoading ? "Submit" : <LoaderCircle className="animate-spin" />}
+        <Button className="rounded-full bg-edunity-primary text-white font-normal px-10 py-5" type="submit" disabled={isLoading}>
+          {!isLoading ? "Create" : <LoaderCircle className="animate-spin" />}
         </Button>
       </form>
     </Form>

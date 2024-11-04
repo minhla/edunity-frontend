@@ -86,4 +86,8 @@
   .content-wrapper {
     @apply max-w-[var(--max-content-width)] mx-auto px-4 xl:px-0;
   }
+
+  .input-form {
+    @apply bg-white rounded-none;
+  }
 }

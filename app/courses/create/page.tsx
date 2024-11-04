@@ -8,8 +8,14 @@ export default function CreateCoursePage() {
           New Course
         </h1>
       </div>
-      <div className="content-wrapper py-24 flex flex-col gap-10">
-      <CreateCourseForm />
+      <div className="py-24">
+      <div className="content-wrapper bg-edunity-grey">
+        <div className="p-20 flex flex-col gap-5">
+        <h2 className="uppercase text-edunity-secondary text-2xl font-bold">Add New Course</h2>
+        <CreateCourseForm />
+        </div>
+    
+      </div>
       </div>
     </div>
   );
