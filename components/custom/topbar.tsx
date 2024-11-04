@@ -30,6 +30,8 @@ const Topbar = () => {
     searchParams.get("keywords") || ""
   );
 
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+
   React.useEffect(() => {
     setInputValue(searchParams.get("keywords") || "");
   }, [searchParams]);
@@ -84,7 +86,7 @@ const Topbar = () => {
             </form>
           </div>
 
-          <Sheet>
+          <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
             <SheetTrigger className=" md:hidden">
               <Menu />
             </SheetTrigger>
@@ -111,6 +113,7 @@ const Topbar = () => {
                         className={`rounded-full px-6 py-1 ${
                           isActiveLink && isActiveClass
                         }`}
+                        onClick={() => setIsMobileMenuOpen(false)}
                       >
                         {label}
                       </Link>
