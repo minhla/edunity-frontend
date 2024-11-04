@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Search, Menu } from "lucide-react";
 
 import {
@@ -23,6 +23,25 @@ const links = [
 
 const Topbar = () => {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  const [inputValue, setInputValue] = React.useState<string>(
+    searchParams.get("keywords") || ""
+  );
+
+  React.useEffect(() => {
+    setInputValue(searchParams.get("keywords") || "");
+  }, [searchParams]);
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (inputValue.trim()) {
+      router.push(`/courses?keywords=${encodeURIComponent(inputValue)}`);
+    } else {
+      router.push("/courses");
+    }
+  };
 
   const isActive = (href: string): boolean => pathname === href;
   const isActiveClass =
@@ -33,7 +52,7 @@ const Topbar = () => {
       <div className="content-wrapper">
         <div className="py-4 flex justify-between items-center">
           <Link href="/">
-            <Image src={logo} alt="Edunity" height={55}/>
+            <Image src={logo} alt="Edunity" height={55} />
           </Link>
           <nav className="hidden md:flex gap-4 items-center justify-center">
             {links.map(({ href, label }) => {
@@ -52,13 +71,17 @@ const Topbar = () => {
             })}
           </nav>
           <div className="relative hidden md:block">
-            <Input
-              placeholder="Search courses"
-              className="max-w-[360px] h-[50px] rounded-full px-8 border-edunity-black"
-            />
-            <div className="absolute right-6 top-12 -translate-y-8 hover:cursor-pointer">
-              <Search className="stroke-edunity-black size-5" />
-            </div>
+            <form onSubmit={handleSearch}>
+              <Input
+                placeholder="Search courses"
+                className="max-w-[360px] h-[50px] rounded-full px-8 border-edunity-black"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+              />
+              <div className="absolute right-6 top-12 -translate-y-8 hover:cursor-pointer">
+                <Search className="stroke-edunity-black size-5 cursor-pointer" />
+              </div>
+            </form>
           </div>
 
           <Sheet>
@@ -71,6 +94,8 @@ const Topbar = () => {
                   <Input
                     placeholder="Search courses"
                     className="rounded-full px-6 border-edunity-black"
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
                   />
                   <div className="absolute right-6 top-12 -translate-y-10 hover:cursor-pointer">
                     <Search className="stroke-edunity-black size-5" />
