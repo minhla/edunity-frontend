@@ -21,7 +21,7 @@ const DeleteButton = ({ courseId }: { courseId: string }) => {
   const pathname = usePathname();
 
   const handleDeleteCourse = async (courseId: string) => {
-    await fetch(`/courses/delete/${courseId}?path=${pathname}`, {
+    await fetch(`/courses/api/delete/${courseId}?path=${pathname}`, {
       method: "DELETE",
     });
     router.refresh();
@@ -29,7 +29,7 @@ const DeleteButton = ({ courseId }: { courseId: string }) => {
 
   return (
     <AlertDialog>
-      <AlertDialogTrigger>
+      <AlertDialogTrigger asChild>
         <Button
           className="bg-edunity-danger absolute bottom-6 right-6"
           size="icon"
