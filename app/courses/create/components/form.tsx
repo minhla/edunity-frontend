@@ -79,7 +79,7 @@ const CreateCourseForm = () => {
             </FormItem>
           )}
         />
-        <div className="flex flex-col md:flex-row gap-5 w-full">
+        <div className="flex flex-col gap-8 md:flex-row md:gap-12 w-full">
           <FormField
             control={form.control}
             name="price"

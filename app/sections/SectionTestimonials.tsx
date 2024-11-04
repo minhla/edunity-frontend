@@ -63,15 +63,15 @@ const SectionTestimonials = () => {
         </h1>
         <div>
           <Carousel>
-            <CarouselContent className="md:-ml-20 pt-12 pl-5">
+            <CarouselContent className="lg:-ml-20 pt-12 pl-5">
               {TESTIMONIALS.map((testimonial, index) => {
                 const { name, title, company, content } = testimonial;
                 return (
                   <CarouselItem
-                    className="md:basis-1/3 md:pl-20 relative"
+                    className="lg:basis-1/3 lg:pl-20 relative"
                     key={`testimonial-${index}`}
                   >
-                    <div className="break-all rounded-2xl border border-edunity-secondary p-3 md:p-6 flex flex-col gap-4 before:content-quote before:absolute before:-top-[30px] before:left-3 md:before:left-[60px]">
+                    <div className="break-all rounded-2xl border border-edunity-secondary p-3 lg:p-6 flex flex-col gap-4 before:content-quote before:absolute before:-top-[30px] before:left-3 lg:before:left-[60px]">
                       <p className=" text-md md:text-lg leading-9">{content}</p>
                       <h3 className="text-edunity-secondary font-bold text-lg md:text-xl">
                         {name}

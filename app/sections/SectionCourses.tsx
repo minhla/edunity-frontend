@@ -38,7 +38,7 @@ const SectionCourses = async () => {
             <Link href="/courses">Load more courses</Link>
           </Button>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-flow-row gap-7">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:grid-flow-row gap-7">
           {courses.map((course) => {
             return <CourseCard key={course._id} course={course} />;
           })}

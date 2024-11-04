@@ -88,6 +88,6 @@
   }
 
   .input-form {
-    @apply bg-white rounded-none;
+    @apply bg-white rounded-none min-h-[48px];
   }
 }

@@ -44,7 +44,7 @@ const DeleteButton = ({ courseId }: { courseId: string }) => {
             Deleted courses cannot be recovered.
           </AlertDialogDescription>
         </AlertDialogHeader>
-        <AlertDialogFooter>
+        <AlertDialogFooter className="flex flex-col gap-2">
           <AlertDialogAction
             className="rounded-full px-4 py-2 bg-edunity-primary text-white"
             onClick={() => handleDeleteCourse(courseId)}
