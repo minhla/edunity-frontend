@@ -9,7 +9,6 @@ import { Input } from "@/components/ui/input";
 
 const SearchBar = () => {
   const searchParams = useSearchParams();
-
   const router = useRouter();
   const [inputValue, setInputValue] = useState<string>(
     searchParams.get("keywords") || ""
