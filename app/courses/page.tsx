@@ -1,6 +1,9 @@
 import { createUrlWithParams } from "./utils";
 import CourseCard from "@/components/custom/courseCard";
 import SearchBar from "./components/searchbar";
+import CoursePagination from "./components/searchPagination";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 type Course = {
   _id: string;
@@ -11,26 +14,34 @@ type Course = {
   rating: number;
 };
 
-const searchCourses = async (searchUrl: string): Promise<Course[]> => {
+type CourseSearchMetadata = {
+  page: number;
+  perPage: number;
+  totalItems: number;
+};
+
+const searchCourses = async (
+  searchUrl: string
+): Promise<{
+  data: Course[];
+  meta: CourseSearchMetadata;
+}> => {
   const res = await fetch(searchUrl);
   const responseJSON = await res.json();
-  return responseJSON.data;
+  return responseJSON;
 };
 
 type PageProps = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-export default async function CoursesPage({
-  searchParams,
-}: PageProps) {
-  const keywords = typeof searchParams.keywords === "string" ? searchParams.keywords : "";
+export default async function CoursesPage({ searchParams }: PageProps) {
 
   const searchURL = await createUrlWithParams(
     `${process.env.API_ROOT_URL}/search`,
     searchParams
   );
-  const coursesResult = await searchCourses(searchURL);
+  const { data: coursesResult, meta } = await searchCourses(searchURL);
 
   return (
     <div>
@@ -43,13 +54,15 @@ export default async function CoursesPage({
         <div className="relative">
           <SearchBar />
         </div>
-        <div className="grid grid-cols-3 gap-5">
+        <Button asChild className="w-fit rounded-full bg-edunity-primary text-white px-4 py-2"><Link href="/courses/create">Create course</Link></Button>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {coursesResult.map((course) => {
             return <CourseCard key={course._id} course={course} />;
           })}
-          {coursesResult.length === 0 && (
-            <p>No courses found.</p>
-          )}
+          {coursesResult.length === 0 && <p>No courses found.</p>}
+        </div>
+        <div>
+         <CoursePagination meta={meta} />
         </div>
       </div>
     </div>
