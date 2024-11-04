@@ -1,9 +1,11 @@
+import { Suspense } from "react";
+import Link from "next/link";
+
 import { createUrlWithParams } from "./utils";
 import CourseCard from "@/components/custom/courseCard";
 import SearchBar from "./components/searchbar";
 import CoursePagination from "./components/searchPagination";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 
 type Course = {
   _id: string;
@@ -36,7 +38,6 @@ type PageProps = {
 };
 
 export default async function CoursesPage({ searchParams }: PageProps) {
-
   const searchURL = await createUrlWithParams(
     `${process.env.API_ROOT_URL}/search`,
     searchParams
@@ -52,9 +53,16 @@ export default async function CoursesPage({ searchParams }: PageProps) {
       </div>
       <div className="content-wrapper py-24 flex flex-col gap-10">
         <div className="relative">
-          <SearchBar />
+          <Suspense>
+            <SearchBar />
+          </Suspense>
         </div>
-        <Button asChild className="w-fit rounded-full bg-edunity-primary text-white px-4 py-2"><Link href="/courses/create">Create course</Link></Button>
+        <Button
+          asChild
+          className="w-fit rounded-full bg-edunity-primary text-white px-4 py-2"
+        >
+          <Link href="/courses/create">Create course</Link>
+        </Button>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {coursesResult.map((course) => {
             return <CourseCard key={course._id} course={course} />;
@@ -62,7 +70,9 @@ export default async function CoursesPage({ searchParams }: PageProps) {
           {coursesResult.length === 0 && <p>No courses found.</p>}
         </div>
         <div>
-         <CoursePagination meta={meta} />
+          <Suspense>
+            <CoursePagination meta={meta} />
+          </Suspense>
         </div>
       </div>
     </div>

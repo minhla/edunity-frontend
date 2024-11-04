@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { Epilogue, Sora } from "next/font/google";
 import "./globals.css";
-import '@smastrom/react-rating/style.css';
+import "@smastrom/react-rating/style.css";
 
 import Topbar from "@/components/custom/topbar";
 import Footer from "@/components/custom/footer";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Edunity",
@@ -22,7 +23,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${epilogue.variable} ${sora.variable}`}>
-        <Topbar />
+        <Suspense>
+          <Topbar />
+        </Suspense>
         {children}
         <Footer />
       </body>
