@@ -74,7 +74,7 @@ const Topbar = () => {
             <form onSubmit={handleSearch}>
               <Input
                 placeholder="Search courses"
-                className="w-[360px] h-[52px] rounded-full px-8 border-edunity-black"
+                className="w-[260px] lg:w-[360px] h-[52px] rounded-full px-8 border-edunity-black"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
               />
