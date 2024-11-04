@@ -6,6 +6,7 @@ import {
   GitCompareArrows,
   Database,
 } from "lucide-react";
+import Link from "next/link";
 
 type Category = {
   categoryName: string;
@@ -78,7 +79,10 @@ const CategoryCard = ({
         className="rounded-full border border-dashed"
         style={{ borderColor: iconColor, backgroundColor: iconBgColor }}
       >
-        <Icon className=" size-10 p-2 md:p-4 md:size-20" style={{ color: iconColor }} />
+        <Icon
+          className=" size-10 p-2 md:p-4 md:size-20"
+          style={{ color: iconColor }}
+        />
       </div>
       <h3 className="font-bold text-xl text-edunity-secondary">
         {categoryName}
@@ -96,15 +100,16 @@ const SectionCategories = async () => {
         <h1 className="uppercase font-heading font-bold text-4xl text-edunity-secondary">
           Most popular topics
         </h1>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-10 w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 md:gap-10 w-full">
           {topCategories.map((category: Category, index) => {
             const style = categoryCardStyles[index % categoryCardStyles.length];
             return (
-              <CategoryCard
+              <Link
                 key={category.categoryName}
-                {...category}
-                style={style}
-              />
+                href={`/courses?keywords=${category.categoryName}`}
+              >
+                <CategoryCard {...category} style={style} />
+              </Link>
             );
           })}
         </div>
